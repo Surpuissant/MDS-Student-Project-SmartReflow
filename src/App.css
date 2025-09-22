@@ -37,11 +37,11 @@ h1 {
 }
 
 .button {
-  color: #000;
+  color: #1d937d;
   background-color: #fff;
-  border: solid 2px #1d937d;
+  border: solid 4px #1d937d;
   padding: 15px 30px;
-  font-size: 1.1rem;
+  font-size: 15px;
   font-weight: 700;
   border-radius: 25px;
   cursor: pointer;
@@ -49,8 +49,6 @@ h1 {
 }
 
 .button:hover {
-  color: #1d937d;
   border-color: #1d937d;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(29, 147, 125, 0.3);
+  transform: scale(0.9);
 }

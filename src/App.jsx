@@ -8,22 +8,20 @@ function App() {
   const handleFiles1Change = (event) => {
     const selectedFiles = Array.from(event.target.files);
     setFiles1(selectedFiles);
-    console.log('Fichiers sélectionnés (Sélecteur 1):', selectedFiles);
   };
 
   const handleFiles2Change = (event) => {
-    const selectedFiles = Array.from(event.target.files);
+    const selectedFiles = event.target.files[0];
     setFiles2(selectedFiles);
-    console.log('Fichiers sélectionnés (Sélecteur 2):', selectedFiles);
   };
 
   return (
     <div className="App">
-      <h1 >Mon Application</h1>
+      <h1>Automatisation export des références</h1>
       
       <div className="container">
         <div className="file-selector">
-          <label htmlFor="files1">Sélecteur de fichiers 1</label>
+          <label htmlFor="files1">Sélecteur de fichiers </label>
           <input
             type="file"
             id="files1"
@@ -44,7 +42,7 @@ function App() {
         </div>
 
         <div className="file-selector">
-          <label htmlFor="files2">Sélecteur de fichiers 2</label>
+          <label htmlFor="files2">Sélecteur de fichiers </label>
           <input
             type="file"
             id="files2"
@@ -63,7 +61,7 @@ function App() {
             </div>
           )}
         </div>
-        
+
         <button className="button">Traiter les fichiers</button>
       </div>
 
