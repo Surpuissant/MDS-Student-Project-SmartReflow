@@ -1,35 +1,74 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [files1, setFiles1] = useState([]);
+  const [files2, setFiles2] = useState([]);
+
+  const handleFiles1Change = (event) => {
+    const selectedFiles = Array.from(event.target.files);
+    setFiles1(selectedFiles);
+    console.log('Fichiers sélectionnés (Sélecteur 1):', selectedFiles);
+  };
+
+  const handleFiles2Change = (event) => {
+    const selectedFiles = Array.from(event.target.files);
+    setFiles2(selectedFiles);
+    console.log('Fichiers sélectionnés (Sélecteur 2):', selectedFiles);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <h1 >Mon Application</h1>
+      
+      <div className="container">
+        <div className="file-selector">
+          <label htmlFor="files1">Sélecteur de fichiers 1</label>
+          <input
+            type="file"
+            id="files1"
+            multiple
+            onChange={handleFiles1Change}
+            className="file-input"
+          />
+          {files1.length > 0 && (
+            <div className="file-list">
+              <p>{files1.length} fichier(s) sélectionné(s):</p>
+              <ul>
+                {files1.map((file, index) => (
+                  <li key={index}>{file.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+
+        <div className="file-selector">
+          <label htmlFor="files2">Sélecteur de fichiers 2</label>
+          <input
+            type="file"
+            id="files2"
+            multiple
+            onChange={handleFiles2Change}
+            className="file-input"
+          />
+          {files2.length > 0 && (
+            <div className="file-list">
+              <p>{files2.length} fichier(s) sélectionné(s):</p>
+              <ul>
+                {files2.map((file, index) => (
+                  <li key={index}>{file.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
+        
+        <button className="button">Traiter les fichiers</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+    </div>
+  );
 }
 
-export default App
+export default App;
