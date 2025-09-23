@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Navbar.css";
 
-function Navbar() {
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -27,5 +27,3 @@ function Navbar() {
     </header>
   );
 }
-
-export default Navbar;
