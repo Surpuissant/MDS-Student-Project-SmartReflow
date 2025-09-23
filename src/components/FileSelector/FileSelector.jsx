@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { getFiltersFromDocument } from "../../utils.js";
+import { getFiltersFromDocument } from "../../utils/utils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 
 export default function FileSelector({ setOutput }) {
