@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./App.css";
 import { getFiltersFromDocument } from "./utils.js";
+import Navbar from "./navbar.jsx";
 
 function App() {
   const [files, setFiles] = useState([]);
@@ -34,6 +35,7 @@ function App() {
 
   return (
     <div className="App">
+      <Navbar />
       <div className="app-container">
         <div className="left-panel">
           <h1>Automatisation export des références</h1>
@@ -82,6 +84,11 @@ function App() {
               className="button"
               onClick={handleAnalyse}
               disabled={isLoading || files.length === 0}
+              title={
+                isLoading || files.length === 0
+                  ? "Veuillez sélectionner au moins un fichier PDF"
+                  : ""
+              }
             >
               {isLoading ? "Traitement en cours..." : "Traiter les fichiers"}
             </button>
