@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { getFiltersFromDocument } from "../../utils/utils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
+import "../FileSelector/FileSelector.css";
 
 export default function FileSelector({ setFilters }) {
   const [sliderValue, setSliderValue] = useState(5);
@@ -31,10 +32,7 @@ export default function FileSelector({ setFilters }) {
   return (
     <div className="file-selector">
       <label htmlFor="files">Déposer vos fichier à analyser</label>
-      <div
-        className="selector-inline"
-        style={{ display: "flex", alignItems: "center", gap: "10px" }}
-      >
+      <div className="selector-inline">
         <label htmlFor="numberSlider">Nombre de filtres à appliquer:</label>
         <input
           type="range"
@@ -43,11 +41,8 @@ export default function FileSelector({ setFilters }) {
           max="10"
           value={sliderValue}
           onChange={(e) => setSliderValue(e.target.value)}
-          style={{ flex: 1 }}
         />
-        <span style={{ minWidth: "30px", textAlign: "center" }}>
-          {sliderValue}
-        </span>
+        <span className="sliderValue">{sliderValue}</span>
       </div>
 
       <div className="container">

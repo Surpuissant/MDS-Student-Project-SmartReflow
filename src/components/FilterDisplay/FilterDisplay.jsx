@@ -1,14 +1,15 @@
 import ExcelDownload from "../ExcelDownload/ExcelDownload.jsx";
+import "./FilterDisplay.css";
 
 export default function FilterDisplay({ filters, filteredExcelData }) {
   return (
-    <div style={{ position: "relative", minHeight: "300px", padding: "20px" }}>
+    <div className="filterContent">
       <h2>Filtres IA détectés</h2>
       {filters &&
       filters.filtres_excel &&
       Array.isArray(filters.filtres_excel) ? (
         <div className="filters-table">
-          <table style={{ overflow: "scroll", maxHeight: "50px" }}>
+          <table className="filterTab">
             <thead>
               <tr>
                 <th>#</th>

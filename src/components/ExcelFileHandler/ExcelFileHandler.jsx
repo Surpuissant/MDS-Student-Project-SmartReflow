@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
+import "./ExcelFileHandler.css";
 
 export default function ExcelFileHandler({ filters, sendDataToParent }) {
   const [excelFile, setExcelFile] = useState(null);
@@ -77,13 +78,7 @@ export default function ExcelFileHandler({ filters, sendDataToParent }) {
       {excelFile && <p>Fichier sélectionné : {excelFile.name}</p>}
 
       {excelData && filters && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
+        <div className="buttonApplyFilter">
           <button
             className={`button ${isLoading ? "button--loading" : ""}`}
             onClick={applyAIFiltersToExcel}

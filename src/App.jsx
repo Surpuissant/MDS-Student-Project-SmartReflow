@@ -25,17 +25,13 @@ function App() {
         </div>
         <div className="content">
           <div className="left-panel">
-            <div
-              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-            >
-              <FileSelector setFilters={setFilters} />
-              {filters !== null && (
-                <ExcelFileHandler
-                  filters={filters}
-                  sendDataToParent={handleDataFromChild}
-                />
-              )}
-            </div>
+            <FileSelector setFilters={setFilters} />
+            {filters !== null && (
+              <ExcelFileHandler
+                filters={filters}
+                sendDataToParent={handleDataFromChild}
+              />
+            )}
           </div>
           <div className="right-panel">
             <FilterDisplay

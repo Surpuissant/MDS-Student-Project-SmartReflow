@@ -1,0 +1,27 @@
+.dataLenght {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 250px;
+}
+
+.exportLineCount {
+  text-align: center;
+  color: red;
+  font-weight: bolder;
+  font-size: 1.3rem;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+}
+
+.downloadButton {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  margin-top: auto;
+  margin-bottom: 20px;
+}

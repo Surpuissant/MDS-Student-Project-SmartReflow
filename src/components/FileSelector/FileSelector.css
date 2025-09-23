@@ -1,0 +1,14 @@
+.selector-inline {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+#numberSlider {
+  flex: 1;
+}
+
+.sliderValue {
+  min-width: 30px;
+  text-align: center;
+}

@@ -1,5 +1,6 @@
 import * as XLSX from "xlsx";
 import { saveAs } from "file-saver";
+import "../ExcelDownload/ExcelDownload.css";
 
 const ExcelDownload = ({ filteredData = [] }) => {
   const safeFilteredData = Array.isArray(filteredData) ? filteredData : [];
@@ -89,44 +90,15 @@ const ExcelDownload = ({ filteredData = [] }) => {
   };
 
   return (
-    <div
-      className="container"
-      style={{
-        marginTop: "20px",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        minHeight: "250px",
-      }}
-    >
+    <div className="container dataLenght">
       {safeFilteredData.length > 0 && (
-        <div
-          style={{
-            textAlign: "center",
-            color: "#ff0000ff",
-            fontWeight: "bolder",
-            fontSize: "1.3rem",
-            letterSpacing: "0.5px",
-            marginBottom: "12px",
-          }}
-        >
+        <div className="exportLineCount">
           {safeFilteredData.length} ligne
           {safeFilteredData.length > 1 ? "s" : ""} à exporter
         </div>
       )}
 
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px",
-          alignItems: "center",
-          width: "100%",
-          marginTop: "auto",
-          marginBottom: "20px",
-        }}
-      >
+      <div className="downloadButton">
         <button onClick={exportToCSV} className="button">
           Télécharger CSV
         </button>
