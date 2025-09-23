@@ -4,24 +4,29 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import FileSelector from "./components/FileSelector/FileSelector.jsx";
 import FilterDisplay from "./components/FilterDisplay/FilterDisplay.jsx";
 import ExcelFileHandler from "./components/ExcelFileHandler/ExcelFileHandler.jsx";
-import ExcelDownload from "./components/ExcelDownload/ExcelDownload.jsx";
 
 function App() {
-  const [output, setOutput] = useState([]); // tableau vide initial
+  const [output, setOutput] = useState(null);
 
   return (
     <div className="App">
       <Navbar />
       <div className="app-container">
-        <div className="left-panel">
-          <div className="titrePrincipal">
-            <h1 className="titre">
-              <div className="automatisation">Automatisation</div> export des références
-            </h1>
+        <div className="titrePrincipal">
+          <h1 className="titre">
+            <div className="automatisation">Automatisation</div> export des
+            références
+          </h1>
+        </div>
+        <div className="content">
+          <div className="left-panel">
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+            >
+              <FileSelector setOutput={setOutput} />
+              <ExcelFileHandler output={output} />
+            </div>
           </div>
-
-          <FileSelector setOutput={setOutput} />
-
           <div className="right-panel">
             <FilterDisplay output={output} />
           </div>
