@@ -9,7 +9,7 @@ export default function ExcelFileHandler({ filters, sendDataToParent }) {
   const [filteredExcelData, setFilteredExcelData] = useState(null);
 
   function handleClick() {
-    sendDataToParent(excelData);
+    sendDataToParent(filteredExcelData);
   }
   const COLUMN_TO_FILTER = "Specialisation__Name";
 
