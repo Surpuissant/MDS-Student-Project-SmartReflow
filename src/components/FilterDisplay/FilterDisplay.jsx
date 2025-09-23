@@ -9,13 +9,15 @@ export default function FilterDisplay({ output }) {
               <tr>
                 <th>#</th>
                 <th>Filtre</th>
+                <th>Pertinence</th>
               </tr>
             </thead>
             <tbody>
               {output.filtres_excel.map((f, i) => (
                 <tr key={i}>
                   <td>{i + 1}</td>
-                  <td>{f}</td>
+                  <td>{f.filter}</td>
+                  <td>{f.relevance_score}%</td>
                 </tr>
               ))}
             </tbody>
