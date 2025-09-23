@@ -3,6 +3,7 @@ import "./App.css";
 import { getFiltersFromDocument } from "./utils.js";
 import Navbar from "./navbar.jsx";
 import { parseExcelToJSON } from "./excelUtils.js";
+import SPLoader from "./components/SpinnerLoader.jsx";
 
 // Configuration : nom de la colonne à filtrer
 const COLUMN_TO_FILTER = "Specialisation__Name";
@@ -173,7 +174,7 @@ function App() {
                     : ""
                 }
               >
-                {isLoading ? "Traitement en cours..." : "Traiter les fichiers"}
+                {isLoading ? <SPLoader /> : "Traiter les fichiers"}
               </button>
             </div>
           </div>
@@ -215,7 +216,7 @@ function App() {
                 }
               >
                 {isLoading
-                  ? "Traitement en cours..."
+                  ? <SPLoader />
                   : "Appliquer les filtres IA à l'Excel"}
               </button>
             )}
