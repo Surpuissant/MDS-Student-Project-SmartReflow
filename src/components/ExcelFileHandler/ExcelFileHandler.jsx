@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
+import ExcelDownload from "../ExcelDownload/ExcelDownload.jsx";
 
 export default function ExcelFileHandler({ output }) {
   const [excelFile, setExcelFile] = useState(null);
@@ -8,8 +9,13 @@ export default function ExcelFileHandler({ output }) {
   const [filteredExcelData, setFilteredExcelData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  // Nouveau state pour le fichier modèle
+  const [templateFile, setTemplateFile] = useState(null);
+  const [templateData, setTemplateData] = useState(null);
+
   const COLUMN_TO_FILTER = "Specialisation__Name";
 
+  // ================= Premier fichier Excel =================
   const handleExcelFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     setExcelFile(selectedFile);
@@ -23,6 +29,7 @@ export default function ExcelFileHandler({ output }) {
       } catch (error) {
         console.error("Erreur parsing Excel:", error);
       }
+      setIsLoading(false);
     }
   };
 
@@ -42,10 +49,7 @@ export default function ExcelFileHandler({ output }) {
     }
 
     const normalize = (col) =>
-      String(col)
-        .trim()
-        .replace(/\s+/g, "_")
-        .replace(/[^a-zA-Z0-9_]/g, "");
+      String(col).trim().replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
 
     const availableColumns = Object.keys(excelData[0]);
     const realColumnName = availableColumns.find(
@@ -68,8 +72,25 @@ export default function ExcelFileHandler({ output }) {
     setFilteredExcelData(filtered);
   };
 
+  // ================= Nouveau fichier modèle =================
+  const handleTemplateFileChange = async (event) => {
+    const selectedFile = event.target.files[0];
+    setTemplateFile(selectedFile);
+    setTemplateData(null);
+
+    if (selectedFile) {
+      try {
+        const jsonData = await parseExcelToJSON(selectedFile);
+        setTemplateData(jsonData);
+      } catch (error) {
+        console.error("Erreur parsing template Excel:", error);
+      }
+    }
+  };
+
   return (
     <div>
+      {/* Premier fichier Excel */}
       <div className="file-selector">
         <label htmlFor="excelFile">Sélecteur du fichier Excel</label>
         <input
@@ -82,22 +103,12 @@ export default function ExcelFileHandler({ output }) {
       </div>
 
       {excelData && output && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
           <button
             className="button"
             onClick={applyAIFiltersToExcel}
-            disabled={isLoading || files.length === 0}
-            title={
-              isLoading || files.length === 0
-                ? "Veuillez sélectionner un fichier Excel"
-                : ""
-            }
+            disabled={isLoading || !excelFile}
+            title={isLoading || !excelFile ? "Veuillez sélectionner un fichier Excel" : ""}
           >
             {isLoading ? <SPLoader /> : "Appliquer les filtres IA à l'Excel"}
           </button>
@@ -112,6 +123,35 @@ export default function ExcelFileHandler({ output }) {
             <p>... et {filteredExcelData.length - 10} lignes supplémentaires</p>
           )}
         </div>
+      )}
+
+      {/* Deuxième fichier modèle */}
+      <div className="file-selector">
+        <label htmlFor="templateFile">Sélecteur du fichier modèle Excel</label>
+        <input
+          type="file"
+          id="templateFile"
+          accept=".xlsx,.xls,.csv"
+          onChange={handleTemplateFileChange}
+        />
+        {templateFile && <p>Fichier sélectionné : {templateFile.name}</p>}
+        {templateData && (
+          <div>
+            <h2>Données du modèle ({templateData.length} lignes)</h2>
+            <pre>{JSON.stringify(templateData.slice(0, 10), null, 2)}</pre>
+            {templateData.length > 10 && (
+              <p>... et {templateData.length - 10} lignes supplémentaires</p>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Bouton ExcelDownload si les deux tableaux sont disponibles */}
+      {filteredExcelData && templateData && (
+        <ExcelDownload
+          filteredData={filteredExcelData}
+          templateData={templateData}
+        />
       )}
     </div>
   );

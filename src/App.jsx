@@ -4,9 +4,10 @@ import Navbar from "./components/Navbar/navbar.jsx";
 import FileSelector from "./components/FileSelector/FileSelector.jsx";
 import FilterDisplay from "./components/FilterDisplay/FilterDisplay.jsx";
 import ExcelFileHandler from "./components/ExcelFileHandler/ExcelFileHandler.jsx";
+import ExcelDownload from "./components/ExcelDownload/ExcelDownload.jsx";
 
 function App() {
-  const [output, setOutput] = useState(null);
+  const [output, setOutput] = useState([]); // tableau vide initial
 
   return (
     <div className="App">
@@ -15,8 +16,7 @@ function App() {
         <div className="left-panel">
           <div className="titrePrincipal">
             <h1 className="titre">
-              <div className="automatisation">Automatisation</div> export des
-              références
+              <div className="automatisation">Automatisation</div> export des références
             </h1>
           </div>
 
