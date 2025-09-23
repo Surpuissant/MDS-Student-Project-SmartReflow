@@ -55,11 +55,10 @@ export default function ExcelFileHandler({ output }) {
     }
 
     const filtered = excelData.filter((row) => {
-      const cellValue = String(row[realColumnName] || "").toLowerCase();
-      return filtersToApply.some((filter) =>
-        cellValue.includes(String(filter.filter).toLowerCase())
-      );
+      const filterValues = filtersToApply.map((f) => String(f.filter));
+      return filterValues.includes(String(row[realColumnName] || ""));
     });
+    console.log(filtersToApply.map((f) => String(f.filter)));
     setFilteredExcelData(filtered);
   };
 
@@ -100,17 +99,6 @@ export default function ExcelFileHandler({ output }) {
           </button>
         </div>
       )}
-
-      {filteredExcelData && (
-        <div>
-          <h2>Données Excel filtrées ({filteredExcelData.length} lignes)</h2>
-          <pre>{JSON.stringify(filteredExcelData.slice(0, 10), null, 2)}</pre>
-          {filteredExcelData.length > 10 && (
-            <p>... et {filteredExcelData.length - 10} lignes supplémentaires</p>
-          )}
-        </div>
-      )}
-
       <ExcelDownload filteredData={filteredExcelData} />
     </div>
   );

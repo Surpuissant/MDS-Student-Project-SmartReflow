@@ -44,7 +44,6 @@
   color: #cceee6;
 }
 
-/* Burger button */
 .navbar-toggle {
   display: none;
   background: none;
@@ -54,7 +53,6 @@
   cursor: pointer;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .navbar-menu {
     display: none;

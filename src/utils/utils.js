@@ -52,6 +52,8 @@ const setPrompt = (focus) => {
         ...
       ]
     }
+
+    EXTREMEMENT IMPORTANT: Le nom du filtre doit être exactement le même que celui dans la liste que je te fournit. Le texte entre parenthèse doit rester.
   `;
 };
 

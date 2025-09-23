@@ -29,7 +29,7 @@ body {
 
 .titre {
   padding: 5%;
-  color: #333F50;
+  color: #333f50;
   font-size: 22px;
 }
 
@@ -72,34 +72,31 @@ body {
   transform: scale(0.9);
 }
 
-/* état "loading" : supprimer bord, recentrer le loader */
 .button.button--loading {
-  border: none;               /* plus de bordure */
-  background-color: transparent; /* fond transparent */
+  border: none;
+  background-color: transparent;
   color: inherit;
-  padding: 12px;              /* ajuste selon la taille du loader */
-  width: 56px;                /* largeur fixe pour un joli centrage */
-  height: 56px;               /* hauteur fixe */
-  border-radius: 50%;         /* rond si tu veux, ou garder 25px si non */
+  padding: 12px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: none;           /* retirer ombre si existante */
-  transition: none;           /* désactiver transition pendant chargement */
+  box-shadow: none;
+  transition: none;
 }
 
-/* empêcher les effets hover quand en chargement */
 .button.button--loading:hover {
   transform: none;
   cursor: default;
 }
 
-/* priorité au cas où .button:disabled existe déjà */
 .button:disabled.button--loading {
   border: none;
   background: transparent;
   color: inherit;
-  opacity: 1; /* si tu veux garder le loader bien visible */
+  opacity: 1;
   cursor: default;
 }
 
@@ -129,7 +126,8 @@ body {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   min-height: 60px;
   height: auto;
-  overflow-y: visible;
+  max-height: 425px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -138,7 +136,7 @@ body {
 .right-panel h2 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #333F50;
+  color: #333f50;
   font-size: 1.2em;
 }
 
