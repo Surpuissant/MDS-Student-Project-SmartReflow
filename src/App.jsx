@@ -27,7 +27,7 @@ function App() {
         setFilters(result.filtres_excel);
       }
     } catch (error) {
-      console.error("Erreur lors de l'analyse:", error);
+      alert(error);
     } finally {
       setIsLoading(false);
     }
@@ -67,7 +67,7 @@ function App() {
                 multiple
                 onChange={handleFilesChange}
                 className="file-input"
-                accept=".pdf"
+                accept=".pdf, .txt, .docx"
               />
               {files.length > 0 && (
                 <div className="file-list">

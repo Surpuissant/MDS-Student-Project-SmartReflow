@@ -1,7 +1,7 @@
 import * as pdfjsLib from "pdfjs-dist";
 import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
+import { extractTextFromFile } from "./textExtraction";
 
-// config worker
 pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
 
 const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
@@ -55,21 +55,6 @@ const setPrompt = (focus) => {
   `;
 };
 
-// ------------------ Extraction texte ------------------ //
-export async function extractTextFromFile(file) {
-  const arrayBuffer = await file.arrayBuffer();
-  const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-
-  let text = "";
-  for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
-    const page = await pdf.getPage(pageNum);
-    const content = await page.getTextContent();
-    const strings = content.items.map((item) => item.str);
-    text += strings.join(" ") + "\n";
-  }
-  return text;
-}
-
 export async function getFiltersFromDocument(files, focus) {
   try {
     const filesArray = Array.isArray(files) ? files : [files];
@@ -113,6 +98,6 @@ export async function getFiltersFromDocument(files, focus) {
     return filters;
   } catch (e) {
     console.error(`Erreur: ${e.message}`);
-    throw e; // Relancer l'erreur pour que le composant puisse la gérer
+    throw e;
   }
 }
