@@ -72,6 +72,37 @@ body {
   transform: scale(0.9);
 }
 
+/* état "loading" : supprimer bord, recentrer le loader */
+.button.button--loading {
+  border: none;               /* plus de bordure */
+  background-color: transparent; /* fond transparent */
+  color: inherit;
+  padding: 12px;              /* ajuste selon la taille du loader */
+  width: 56px;                /* largeur fixe pour un joli centrage */
+  height: 56px;               /* hauteur fixe */
+  border-radius: 50%;         /* rond si tu veux, ou garder 25px si non */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: none;           /* retirer ombre si existante */
+  transition: none;           /* désactiver transition pendant chargement */
+}
+
+/* empêcher les effets hover quand en chargement */
+.button.button--loading:hover {
+  transform: none;
+  cursor: default;
+}
+
+/* priorité au cas où .button:disabled existe déjà */
+.button:disabled.button--loading {
+  border: none;
+  background: transparent;
+  color: inherit;
+  opacity: 1; /* si tu veux garder le loader bien visible */
+  cursor: default;
+}
+
 .app-container {
   display: flex;
   flex-direction: column;
