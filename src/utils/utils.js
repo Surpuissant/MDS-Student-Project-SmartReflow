@@ -10,7 +10,7 @@ const API_URL = "https://api.openai.com/v1/chat/completions";
 const setPrompt = (focus) => {
   return `
     Tu es un assistant chargé d'analyser des documents d'appel d'offre (DOC1 et DOC2).
-    Ton rôle est d'identifier les ${focus} filtres les plus pertinents **parmi la liste existante** en te basant sur le CONTENU PRINCIPAL et l'OBJET de l'appel d'offres, pas uniquement sur les moyens de communication utilisés.
+    Ton rôle est d'identifier les ${focus} filtres les plus pertinents **parmi la liste existante** ainsi que leurs score de pertinance qui doit se situer entre 0 et 100 (qui sera plus tard traduit en pourcentage) en te basant sur le CONTENU PRINCIPAL et l'OBJET de l'appel d'offres, pas uniquement sur les moyens de communication utilisés.
     Limite toi à EXACTEMENT ${focus} resultats. Ceci est très important.
 
     **Critères de priorisation :**
@@ -47,8 +47,8 @@ const setPrompt = (focus) => {
     ATTENTION : **Ne retourne aucun texte supplémentaire en dehors du JSON** qui doit être au format suivant:
     {
       "filtres_excel": [
-        "filter1",
-        "filter2",
+        { "filter": "NomDuFiltre1", "relevance_score": 92 },
+        { "filter": "NomDuFiltre2", "relevance_score": 87 },
         ...
       ]
     }

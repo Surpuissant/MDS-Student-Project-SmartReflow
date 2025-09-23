@@ -19,7 +19,7 @@ export default function FileSelector({ setOutput }) {
 
     setIsLoading(true);
     try {
-      const result = await getFiltersFromDocument(files);
+      const result = await getFiltersFromDocument(files, sliderValue);
       setOutput(result);
     } catch (error) {
       alert(error);
