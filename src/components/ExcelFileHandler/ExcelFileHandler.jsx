@@ -90,14 +90,14 @@ export default function ExcelFileHandler({ output }) {
           }}
         >
           <button
-            className="button"
+            className={`button ${isLoading ? "button--loading" : ""}`}
             onClick={applyAIFiltersToExcel}
-            disabled={isLoading || files.length === 0}
+            disabled={isLoading || !excelFile}
             title={
-              isLoading || files.length === 0
-                ? "Veuillez sélectionner un fichier Excel"
-                : ""
+              isLoading || !excelFile ? "Veuillez sélectionner un fichier Excel" : ""
             }
+            aria-busy={isLoading}
+            aria-disabled={isLoading || !excelFile}
           >
             {isLoading ? <SPLoader /> : "Appliquer les filtres IA à l'Excel"}
           </button>

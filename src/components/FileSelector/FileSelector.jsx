@@ -73,7 +73,7 @@ export default function FileSelector({ setOutput }) {
           )}
         </div>
         <button
-          className="button"
+          className={`button ${isLoading ? "button--loading" : ""}`}
           onClick={handleAnalyse}
           disabled={isLoading || files.length === 0}
           title={
@@ -81,6 +81,8 @@ export default function FileSelector({ setOutput }) {
               ? "Veuillez sélectionner au moins un fichier PDF"
               : ""
           }
+          aria-busy={isLoading}
+          aria-disabled={isLoading || files.length === 0}
         >
           {isLoading ? <SPLoader /> : "Traiter les fichiers"}
         </button>
