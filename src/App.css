@@ -29,7 +29,7 @@ body {
 
 .titre {
   padding: 5%;
-  color: #000;
+  color: #333F50;
   font-size: 22px;
 }
 
@@ -126,7 +126,7 @@ body {
   background-color: #f8f9fa;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   min-height: 60px;
   height: auto;
   overflow-y: visible;
@@ -138,7 +138,7 @@ body {
 .right-panel h2 {
   margin-top: 0;
   margin-bottom: 15px;
-  color: #333;
+  color: #333F50;
   font-size: 1.2em;
 }
 
@@ -219,19 +219,5 @@ body {
 
   .left-panel {
     min-width: auto;
-  }
-
-  .right-panel {
-    position: fixed;
-    top: 90px;
-    right: 30px;
-    width: 350px;
-    background-color: #f8f9fa;
-    border-radius: 8px;
-    padding: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
-    z-index: 100;
-    max-height: 1vh;
-    overflow-y: auto;
   }
 }
