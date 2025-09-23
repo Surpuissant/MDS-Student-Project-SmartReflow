@@ -102,7 +102,9 @@ function App() {
       <Navbar />
       <div className="app-container">
         <div className="left-panel">
-          <h1>Automatisation export des références</h1>
+          <div className="titrePrincipal">
+          <h1 className="titre"><div className="automatisation">Automatisation</div> export des références</h1>
+          </div>
 
           <div className="file-selector">
             <label htmlFor="files">Sélecteur de fichiers</label>
