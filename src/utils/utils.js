@@ -86,7 +86,7 @@ export async function getFiltersFromDocument(files, focus) {
 
     if (!response.ok) {
       const err = await response.text();
-      console.log(`Erreur API: ${err}`);
+      console.error(`Erreur API: ${err}`);
       throw new Error(`Erreur API: ${response.status}`);
     }
 

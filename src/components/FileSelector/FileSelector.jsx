@@ -2,7 +2,7 @@ import { useState } from "react";
 import { getFiltersFromDocument } from "../../utils/utils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 
-export default function FileSelector({ setOutput }) {
+export default function FileSelector({ setFilters }) {
   const [sliderValue, setSliderValue] = useState(5);
   const [files, setFiles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -20,7 +20,7 @@ export default function FileSelector({ setOutput }) {
     setIsLoading(true);
     try {
       const result = await getFiltersFromDocument(files, sliderValue);
-      setOutput(result);
+      setFilters(result);
     } catch (error) {
       alert(error);
     } finally {

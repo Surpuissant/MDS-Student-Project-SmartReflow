@@ -1,10 +1,14 @@
-export default function FilterDisplay({ output }) {
+import ExcelDownload from "../ExcelDownload/ExcelDownload.jsx";
+
+export default function FilterDisplay({ filters, filteredExcelData }) {
   return (
-    <div>
+    <div style={{ position: "relative", minHeight: "300px", padding: "20px" }}>
       <h2>Filtres IA détectés</h2>
-      {output && output.filtres_excel && Array.isArray(output.filtres_excel) ? (
+      {filters &&
+      filters.filtres_excel &&
+      Array.isArray(filters.filtres_excel) ? (
         <div className="filters-table">
-          <table>
+          <table style={{ overflow: "scroll", maxHeight: "50px" }}>
             <thead>
               <tr>
                 <th>#</th>
@@ -13,7 +17,7 @@ export default function FilterDisplay({ output }) {
               </tr>
             </thead>
             <tbody>
-              {output.filtres_excel.map((f, i) => (
+              {filters.filtres_excel.map((f, i) => (
                 <tr key={i}>
                   <td>{i + 1}</td>
                   <td>{f.filter}</td>
@@ -25,6 +29,9 @@ export default function FilterDisplay({ output }) {
         </div>
       ) : (
         <p className="no-filters">Aucun filtre détecté pour l'instant</p>
+      )}
+      {filteredExcelData !== null && (
+        <ExcelDownload filteredData={filteredExcelData} />
       )}
     </div>
   );

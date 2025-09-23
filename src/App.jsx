@@ -4,10 +4,15 @@ import Navbar from "./components/Navbar/Navbar.jsx";
 import FileSelector from "./components/FileSelector/FileSelector.jsx";
 import FilterDisplay from "./components/FilterDisplay/FilterDisplay.jsx";
 import ExcelFileHandler from "./components/ExcelFileHandler/ExcelFileHandler.jsx";
+import { filterExcelData } from "./utils/excelUtils.js";
 
 function App() {
-  const [output, setOutput] = useState(null);
+  const [filters, setFilters] = useState(null);
+  const [filteredExcelData, setFilteredExcelData] = useState(null);
 
+  function handleDataFromChild(data) {
+    setFilteredExcelData(data);
+  }
   return (
     <div className="App">
       <Navbar />
@@ -23,12 +28,20 @@ function App() {
             <div
               style={{ display: "flex", flexDirection: "column", gap: "16px" }}
             >
-              <FileSelector setOutput={setOutput} />
-              <ExcelFileHandler output={output} />
+              <FileSelector setFilters={setFilters} />
+              {filters !== null && (
+                <ExcelFileHandler
+                  filters={filters}
+                  sendDataToParent={handleDataFromChild}
+                />
+              )}
             </div>
           </div>
           <div className="right-panel">
-            <FilterDisplay output={output} />
+            <FilterDisplay
+              filters={filters}
+              filteredExcelData={filteredExcelData}
+            />
           </div>
         </div>
       </div>

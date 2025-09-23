@@ -1,14 +1,16 @@
 import { useState } from "react";
 import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
-import ExcelDownload from "../ExcelDownload/ExcelDownload.jsx";
 
-export default function ExcelFileHandler({ output }) {
+export default function ExcelFileHandler({ filters, sendDataToParent }) {
   const [excelFile, setExcelFile] = useState(null);
   const [excelData, setExcelData] = useState(null);
-  const [filteredExcelData, setFilteredExcelData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [filteredExcelData, setFilteredExcelData] = useState(null);
 
+  function handleClick() {
+    sendDataToParent(excelData);
+  }
   const COLUMN_TO_FILTER = "Specialisation__Name";
 
   const handleExcelFileChange = async (event) => {
@@ -29,9 +31,9 @@ export default function ExcelFileHandler({ output }) {
   };
 
   const applyAIFiltersToExcel = () => {
-    if (!excelData || !output) return;
+    if (!excelData || !filters) return;
 
-    let filtersToApply = output.filtres_excel;
+    let filtersToApply = filters.filtres_excel;
 
     if (filtersToApply.length === 0) {
       setFilteredExcelData(excelData);
@@ -58,24 +60,23 @@ export default function ExcelFileHandler({ output }) {
       const filterValues = filtersToApply.map((f) => String(f.filter));
       return filterValues.includes(String(row[realColumnName] || ""));
     });
-    console.log(filtersToApply.map((f) => String(f.filter)));
+
     setFilteredExcelData(filtered);
+    handleClick();
   };
 
   return (
-    <div>
-      <div className="file-selector">
-        <label htmlFor="excelFile">Sélecteur du fichier Excel</label>
-        <input
-          type="file"
-          id="excelFile"
-          accept=".xlsx,.xls,.csv"
-          onChange={handleExcelFileChange}
-        />
-        {excelFile && <p>Fichier sélectionné : {excelFile.name}</p>}
-      </div>
+    <div className="file-selector">
+      <label htmlFor="excelFile">Sélecteur du fichier Excel</label>
+      <input
+        type="file"
+        id="excelFile"
+        accept=".xlsx,.xls,.csv"
+        onChange={handleExcelFileChange}
+      />
+      {excelFile && <p>Fichier sélectionné : {excelFile.name}</p>}
 
-      {excelData && output && (
+      {excelData && filters && (
         <div
           style={{
             display: "flex",
@@ -99,7 +100,6 @@ export default function ExcelFileHandler({ output }) {
           </button>
         </div>
       )}
-      <ExcelDownload filteredData={filteredExcelData} />
     </div>
   );
 }

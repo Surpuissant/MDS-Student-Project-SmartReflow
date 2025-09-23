@@ -103,7 +103,6 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 20px;
@@ -122,12 +121,10 @@ body {
 .right-panel {
   background-color: #f8f9fa;
   border-radius: 8px;
-  padding: 20px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   min-height: 60px;
   height: auto;
-  max-height: 425px;
-  overflow-y: auto;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -143,7 +140,8 @@ body {
 .filters-table {
   width: 100%;
   max-width: 100%;
-  overflow-x: auto;
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .filters-table table {

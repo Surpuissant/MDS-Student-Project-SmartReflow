@@ -35,9 +35,6 @@ const ExcelDownload = ({ filteredData = [] }) => {
       newDataArray.push(newRow);
     }
 
-    console.log("📋 Nouveau tableau créé:", newDataArray);
-    console.log("📋 Nombre de lignes:", newDataArray.length);
-
     return newDataArray;
   };
 
@@ -92,8 +89,44 @@ const ExcelDownload = ({ filteredData = [] }) => {
   };
 
   return (
-    <div className="container" style={{ marginTop: "20px" }}>
-      <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+    <div
+      className="container"
+      style={{
+        marginTop: "20px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between",
+        alignItems: "center",
+        minHeight: "250px",
+      }}
+    >
+      {safeFilteredData.length > 0 && (
+        <div
+          style={{
+            textAlign: "center",
+            color: "#ff0000ff",
+            fontWeight: "bolder",
+            fontSize: "1.3rem",
+            letterSpacing: "0.5px",
+            marginBottom: "12px",
+          }}
+        >
+          {safeFilteredData.length} ligne
+          {safeFilteredData.length > 1 ? "s" : ""} à exporter
+        </div>
+      )}
+
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px",
+          alignItems: "center",
+          width: "100%",
+          marginTop: "auto",
+          marginBottom: "20px",
+        }}
+      >
         <button onClick={exportToCSV} className="button">
           Télécharger CSV
         </button>
@@ -101,13 +134,6 @@ const ExcelDownload = ({ filteredData = [] }) => {
           Télécharger Excel
         </button>
       </div>
-
-      {safeFilteredData.length > 0 && (
-        <div style={{ marginTop: "10px", textAlign: "center", color: "#666" }}>
-          {safeFilteredData.length} ligne
-          {safeFilteredData.length > 1 ? "s" : ""} à exporter
-        </div>
-      )}
     </div>
   );
 };
