@@ -19,7 +19,7 @@ export default function SPLoader() {
       {showImg ? (
         // si tu l'as importé : <img src={sp} alt="loader" />
         // si l'image est dans public : <img src="/sp.svg" alt="loader" />
-        <img src="/sp.svg" alt="loader" />
+        <img src="/sp.svg" alt="loader" width='35px'/>
       ) : (
         <h3>{text}</h3>
       )}

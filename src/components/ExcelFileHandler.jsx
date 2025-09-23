@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { parseExcelToJSON } from "../excelUtils.js";
+import SPLoader from "../components/SpinnerLoader.jsx";
 
 export default function ExcelFileHandler({ output }) {
   const [excelFile, setExcelFile] = useState(null);
@@ -98,9 +99,7 @@ export default function ExcelFileHandler({ output }) {
                 : ""
             }
           >
-            {isLoading
-              ? "Traitement en cours..."
-              : "Appliquer les filtres IA à l'Excel"}
+            {isLoading ? <SPLoader /> : "Appliquer les filtres IA à l'Excel"}
           </button>
         </div>
       )}
