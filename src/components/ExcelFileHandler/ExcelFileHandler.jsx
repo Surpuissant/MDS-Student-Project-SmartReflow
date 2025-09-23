@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
+import ExcelDownload from "../ExcelDownload/ExcelDownload.jsx";
 
 export default function ExcelFileHandler({ output }) {
   const [excelFile, setExcelFile] = useState(null);
@@ -8,8 +9,11 @@ export default function ExcelFileHandler({ output }) {
   const [filteredExcelData, setFilteredExcelData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+
+
   const COLUMN_TO_FILTER = "Specialisation__Name";
 
+  // ================= Premier fichier Excel =================
   const handleExcelFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     setExcelFile(selectedFile);
@@ -23,6 +27,7 @@ export default function ExcelFileHandler({ output }) {
       } catch (error) {
         console.error("Erreur parsing Excel:", error);
       }
+      setIsLoading(false);
     }
   };
 
@@ -42,10 +47,7 @@ export default function ExcelFileHandler({ output }) {
     }
 
     const normalize = (col) =>
-      String(col)
-        .trim()
-        .replace(/\s+/g, "_")
-        .replace(/[^a-zA-Z0-9_]/g, "");
+      String(col).trim().replace(/\s+/g, "_").replace(/[^a-zA-Z0-9_]/g, "");
 
     const availableColumns = Object.keys(excelData[0]);
     const realColumnName = availableColumns.find(
@@ -68,8 +70,11 @@ export default function ExcelFileHandler({ output }) {
     setFilteredExcelData(filtered);
   };
 
+
+
   return (
     <div>
+      {/* Premier fichier Excel */}
       <div className="file-selector">
         <label htmlFor="excelFile">Sélecteur du fichier Excel</label>
         <input
@@ -82,13 +87,7 @@ export default function ExcelFileHandler({ output }) {
       </div>
 
       {excelData && output && (
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "10px",
-          }}
-        >
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}>
           <button
             className={`button ${isLoading ? "button--loading" : ""}`}
             onClick={applyAIFiltersToExcel}
@@ -113,6 +112,9 @@ export default function ExcelFileHandler({ output }) {
           )}
         </div>
       )}
+
+      <ExcelDownload filteredData={filteredExcelData} />
+      
     </div>
   );
 }
