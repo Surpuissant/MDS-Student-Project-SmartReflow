@@ -9,9 +9,7 @@ export default function ExcelFileHandler({ output }) {
   const [filteredExcelData, setFilteredExcelData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Nouveau state pour le fichier modèle
-  const [templateFile, setTemplateFile] = useState(null);
-  const [templateData, setTemplateData] = useState(null);
+
 
   const COLUMN_TO_FILTER = "Specialisation__Name";
 
@@ -72,21 +70,7 @@ export default function ExcelFileHandler({ output }) {
     setFilteredExcelData(filtered);
   };
 
-  // ================= Nouveau fichier modèle =================
-  const handleTemplateFileChange = async (event) => {
-    const selectedFile = event.target.files[0];
-    setTemplateFile(selectedFile);
-    setTemplateData(null);
 
-    if (selectedFile) {
-      try {
-        const jsonData = await parseExcelToJSON(selectedFile);
-        setTemplateData(jsonData);
-      } catch (error) {
-        console.error("Erreur parsing template Excel:", error);
-      }
-    }
-  };
 
   return (
     <div>
@@ -125,34 +109,8 @@ export default function ExcelFileHandler({ output }) {
         </div>
       )}
 
-      {/* Deuxième fichier modèle */}
-      <div className="file-selector">
-        <label htmlFor="templateFile">Sélecteur du fichier modèle Excel</label>
-        <input
-          type="file"
-          id="templateFile"
-          accept=".xlsx,.xls,.csv"
-          onChange={handleTemplateFileChange}
-        />
-        {templateFile && <p>Fichier sélectionné : {templateFile.name}</p>}
-        {templateData && (
-          <div>
-            <h2>Données du modèle ({templateData.length} lignes)</h2>
-            <pre>{JSON.stringify(templateData.slice(0, 10), null, 2)}</pre>
-            {templateData.length > 10 && (
-              <p>... et {templateData.length - 10} lignes supplémentaires</p>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Bouton ExcelDownload si les deux tableaux sont disponibles */}
-      {filteredExcelData && templateData && (
-        <ExcelDownload
-          filteredData={filteredExcelData}
-          templateData={templateData}
-        />
-      )}
+      <ExcelDownload filteredData={filteredExcelData} />
+      
     </div>
   );
 }
