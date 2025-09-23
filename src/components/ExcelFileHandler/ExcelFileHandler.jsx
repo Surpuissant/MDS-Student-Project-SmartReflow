@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { parseExcelToJSON } from "../excelUtils.js";
-import SPLoader from "../components/SpinnerLoader.jsx";
+import { parseExcelToJSON } from "../../excelUtils.js";
+import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 
 export default function ExcelFileHandler({ output }) {
   const [excelFile, setExcelFile] = useState(null);

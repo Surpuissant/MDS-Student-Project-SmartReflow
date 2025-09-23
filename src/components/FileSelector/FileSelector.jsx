@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { getFiltersFromDocument } from "../utils.js";
-import SPLoader from "../components/SpinnerLoader.jsx";
+import { getFiltersFromDocument } from "../../utils.js";
+import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 
 export default function FileSelector({ setOutput }) {
   const [sliderValue, setSliderValue] = useState(5);

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import "./App.css";
-import Navbar from "./components/navbar.jsx";
-import FileSelector from "./components/FileSelector.jsx";
-import FilterDisplay from "./components/FilterDisplay.jsx";
-import ExcelFileHandler from "./components/ExcelFileHandler.jsx";
+import Navbar from "./components/Navbar/navbar.jsx";
+import FileSelector from "./components/FileSelector/FileSelector.jsx";
+import FilterDisplay from "./components/FilterDisplay/FilterDisplay.jsx";
+import ExcelFileHandler from "./components/ExcelFileHandler/ExcelFileHandler.jsx";
 
 function App() {
-  const [isLoading, setIsLoading] = useState(false);
   const [output, setOutput] = useState(null);
 
   return (
