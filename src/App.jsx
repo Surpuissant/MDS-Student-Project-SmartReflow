@@ -104,7 +104,7 @@ function App() {
       <div className="app-container">
         <div className="left-panel">
           <div className="titrePrincipal">
-          <h1 className="titre"><div className="automatisation">Automatisation</div> export des références</h1>
+            <h1 className="titre"><div className="automatisation">Automatisation</div> export des références</h1>
           </div>
 
           <div className="file-selector">
@@ -182,8 +182,8 @@ function App() {
           <div className="right-panel">
             <h2>Filtres IA détectés</h2>
             {output &&
-            output.filtres_excel &&
-            Array.isArray(output.filtres_excel) ? (
+              output.filtres_excel &&
+              Array.isArray(output.filtres_excel) ? (
               <ul>
                 {output.filtres_excel.map((f, i) => (
                   <li key={i}>{f}</li>
