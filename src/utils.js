@@ -48,18 +48,22 @@ export async function extractTextFromFile(file) {
   return text;
 }
 
-export async function startAnalyse(file1, file2) {
+export async function getFiltersFromDocument(files, setOutput) {
   try {
-    const doc1 = await extractTextFromFile(file1);
-    const doc2 = await extractTextFromFile(file2);
+    const filesArray = Array.isArray(files) ? files : [files];
+    const docs = await Promise.all(
+      filesArray.map((file) => extractTextFromFile(file))
+    );
 
-    const input_text = `DOC1: ${doc1}\n\nDOC2: ${doc2}`;
+    const input_text = docs
+      .map((doc, idx) => `DOC${idx + 1}: ${doc}`)
+      .join("\n\n");
 
     const response = await fetch(API_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${API_KEY}`,
+        Authorization: "Bearer " + API_KEY,
       },
       body: JSON.stringify({
         model: "gpt-4.1-mini",
@@ -78,9 +82,13 @@ export async function startAnalyse(file1, file2) {
     }
 
     const data = await response.json();
-    const output_text = data.choices[0].message.content;
-
-    console.log(output_text);
+    let content = data.choices[0].message.content.trim();
+    // Remove Markdown code block markers if present
+    if (content.startsWith("```")) {
+      content = content.replace(/^```[a-zA-Z]*\n?/, "").replace(/```$/, "");
+    }
+    const filters = JSON.parse(content);
+    setOutput(filters);
   } catch (e) {
     console.log(`Erreur: ${e.message}`);
   }

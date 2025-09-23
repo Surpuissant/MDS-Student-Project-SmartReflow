@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "./App.css";
-import { startAnalyse } from "./utils.js";
+import { getFiltersFromDocument } from "./utils.js";
 
 function App() {
   const [files1, setFiles1] = useState([]);
-  const [files2, setFiles2] = useState([]);
+  const [output, setOutput] = useState(null);
 
   const handleFiles1Change = (event) => {
     const selectedFiles = Array.from(event.target.files);
     setFiles1(selectedFiles);
   };
 
-  const handleFiles2Change = (event) => {
-    const selectedFiles = event.target.files[0];
-    setFiles2(selectedFiles);
+  const handleAnalyse = () => {
+    getFiltersFromDocument(files1, setOutput);
   };
 
   return (
@@ -42,33 +41,20 @@ function App() {
           )}
         </div>
 
-        <div className="file-selector">
-          <label htmlFor="files2">Sélecteur de fichiers </label>
-          <input
-            type="file"
-            id="files2"
-            multiple
-            onChange={handleFiles2Change}
-            className="file-input"
-          />
-          {files2.length > 0 && (
-            <div className="file-list">
-              <p>{files2.length} fichier(s) sélectionné(s):</p>
-              <ul>
-                {files2.map((file, index) => (
-                  <li key={index}>{file.name}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </div>
-
-        <button
-          className="button"
-          onClick={() => startAnalyse(files1[0], files1[1])}
-        >
+        <button className="button" onClick={handleAnalyse}>
           Traiter les fichiers
         </button>
+
+        {output && output.filtres_excel && (
+          <div className="output-list">
+            <h2>Filtres détectés :</h2>
+            <ul>
+              {output.filtres_excel.map((filtre, index) => (
+                <li key={index}>{filtre}</li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
     </div>
   );
