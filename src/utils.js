@@ -26,12 +26,31 @@ const setPrompt = (focus) => {
     - Si l'organisation est touristique/patrimoniale, privilégie Tourism/History/Culture même si elle fait du marketing
 
     Voici la liste des filtres à utiliser pour identifier les thèmes :
-    [votre liste de filtres existante]
+    Clothing/Fashion, Arts/Culture, Technical, Economics, Food-processing industry, Tourism (general),
+    General, Environment/Ecology, Touristic accomodation - Hotel, Mountain tourism, Watchmaking/Jewelry,
+    Bank/Finance/Accounting/Audit, Defense/Military, Marketing/Public relations, Education/Pedagogy,
+    Mechanical industry, Technical textiles, Energy/Power generation, Law (General), Rurban tourism,
+    Seaside tourism, Zoology, Ressources humaines, History, Government/Politics, Administrative/Official Documents,
+    Management sciences, Touristic accomodation - Campsite, Construction industry, Gastronomy,
+    Corporate Communication, Media, Law (Expert), Science, Culinary arts, Sports (General), Contracts (Law),
+    Literature, Home textiles, Cooking/Culinary, Oenology/Viticulture, Beauty/Cosmetics, Electronics industry,
+    Sports (Expert), Agriculture, Film Industry, Automotive industry, Medicine, Psychology, Home equipment,
+    Law, Ship building industry, Medical (General), Technology, Pharmaceutical industry, Telecommunications,
+    Lingerie, Furniture, Corporate Social Responsability - CSR, Atout France, Computer science, Aerospace/Aviation,
+    Business/E-Commerce, Music, Nutrition, Biodiversity, Health/Wellbeing, Catering, Architecture,
+    Hospitality equipment, Textile machinery industry, Nuclear industry, Touristic accomodation - Other, Veterinary,
+    Religion, Botany, Transport/Logistics, Medical (Expert), Paramedical (Expert), Patents, Chemical industry,
+    Business/Trade, Paramedical (General), IT, Photography, Software editing, Geology, Fishery, Railway industry,
+    Software Localisation, Astronomy, Mathematics/Statistics, Demography, Transcreation, Internet,
+    Wines and spirits, Human sciences
 
     ATTENTION : **Ne retourne aucun texte supplémentaire en dehors du JSON** qui doit être au format suivant:
     {
-      filtres_excel:
-        [...]
+      "filtres_excel": [
+        "filter1",
+        "filter2",
+        ...
+      ]
     }
   `;
 };
@@ -81,18 +100,19 @@ export async function getFiltersFromDocument(files, focus) {
     if (!response.ok) {
       const err = await response.text();
       console.log(`Erreur API: ${err}`);
-      return;
+      throw new Error(`Erreur API: ${response.status}`);
     }
 
     const data = await response.json();
     let content = data.choices[0].message.content.trim();
-    // Remove Markdown code block markers if present
+
     if (content.startsWith("```")) {
       content = content.replace(/^```[a-zA-Z]*\n?/, "").replace(/```$/, "");
     }
     const filters = JSON.parse(content);
-    setOutput(filters);
+    return filters;
   } catch (e) {
-    console.log(`Erreur: ${e.message}`);
+    console.error(`Erreur: ${e.message}`);
+    throw e; // Relancer l'erreur pour que le composant puisse la gérer
   }
 }
