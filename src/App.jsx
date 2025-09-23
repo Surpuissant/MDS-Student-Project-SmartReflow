@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Navbar from "./components/Navbar/navbar.jsx";
+import Navbar from "./components/Navbar/Navbar.jsx";
 import FileSelector from "./components/FileSelector/FileSelector.jsx";
 import FilterDisplay from "./components/FilterDisplay/FilterDisplay.jsx";
 import ExcelFileHandler from "./components/ExcelFileHandler/ExcelFileHandler.jsx";
