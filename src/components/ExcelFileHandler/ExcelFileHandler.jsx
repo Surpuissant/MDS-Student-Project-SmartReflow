@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { parseExcelToJSON } from "../../excelUtils.js";
+import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 
 export default function ExcelFileHandler({ output }) {
