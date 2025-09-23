@@ -8,7 +8,6 @@ export default function SPLoader() {
   useEffect(() => {
     const t = setTimeout(() => {
       setShowImg(false);
-      setText('yes');
     }, 3000);
 
     return () => clearTimeout(t); // nettoyage
