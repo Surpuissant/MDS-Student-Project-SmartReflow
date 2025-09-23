@@ -31,7 +31,7 @@ body {
   font-size: 50px;
   font-style: italic;
   color: white;
-  background-color: #1D937D;
+  background-color: #1d937d;
   padding: 5%;
 }
 
@@ -160,7 +160,9 @@ h1 {
 }
 
 .button:disabled {
-  background-color: #ccc;
+  background-color: #ffffff;
+  color: rgb(255, 0, 0);
+  border-color: #ff0000;
   cursor: not-allowed;
   opacity: 0.6;
 }
