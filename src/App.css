@@ -21,6 +21,20 @@ body {
   gap: 2rem;
 }
 
+.titre {
+  display: flex;
+}
+
+.automatisation {
+  font-weight: lighter;
+  font-family: "Baskervville", Sans-serif;
+  font-size: 50px;
+  font-style: italic;
+  color: white;
+  background-color: #1D937D;
+  padding: 5%;
+}
+
 h1 {
   font-size: 2.5rem;
   font-weight: bold;
