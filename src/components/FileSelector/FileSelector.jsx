@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { getFiltersFromDocument } from "../../utils/utils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 
@@ -27,28 +27,15 @@ export default function FileSelector({ setOutput }) {
       setIsLoading(false);
     }
   };
+
   return (
     <div className="file-selector">
-      <label htmlFor="files">Sélecteur de fichiers</label>
-      <input
-        type="file"
-        id="files"
-        multiple
-        accept=".pdf, .txt, .docx"
-        onChange={handleFilesChange}
-      />
-      {files.length > 0 && (
-        <ul>
-          {files.map((f, i) => (
-            <li key={i}>{f.name}</li>
-          ))}
-        </ul>
-      )}
+      <label htmlFor="files">Déposer vos fichier à analyser</label>
       <div
         className="selector-inline"
-        style={{ display: "flex", alignItems: "center", gap: "12px" }}
+        style={{ display: "flex", alignItems: "center", gap: "10px" }}
       >
-        <label htmlFor="numberSlider">Nombre de filtres :</label>
+        <label htmlFor="numberSlider">Nombre de filtres à appliquer:</label>
         <input
           type="range"
           id="numberSlider"

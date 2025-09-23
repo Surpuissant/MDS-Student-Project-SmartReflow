@@ -3,13 +3,26 @@ export default function FilterDisplay({ output }) {
     <div>
       <h2>Filtres IA détectés</h2>
       {output && output.filtres_excel && Array.isArray(output.filtres_excel) ? (
-        <ul>
-          {output.filtres_excel.map((f, i) => (
-            <li key={i}>{f}</li>
-          ))}
-        </ul>
+        <div className="filters-table">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Filtre</th>
+              </tr>
+            </thead>
+            <tbody>
+              {output.filtres_excel.map((f, i) => (
+                <tr key={i}>
+                  <td>{i + 1}</td>
+                  <td>{f}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       ) : (
-        <p>Aucun filtre détecté pour l'instant</p>
+        <p className="no-filters">Aucun filtre détecté pour l'instant</p>
       )}
     </div>
   );

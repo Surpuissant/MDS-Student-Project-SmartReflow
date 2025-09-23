@@ -12,19 +12,23 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="app-container">
-        <div className="left-panel">
-          <div className="titrePrincipal">
-            <h1 className="titre">
-              <div className="automatisation">Automatisation</div> export des
-              références
-            </h1>
+        <div className="titrePrincipal">
+          <h1 className="titre">
+            <div className="automatisation">Automatisation</div> export des
+            références
+          </h1>
+        </div>
+        <div className="content">
+          <div className="left-panel">
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+            >
+              <FileSelector setOutput={setOutput} />
+              <ExcelFileHandler output={output} />
+            </div>
           </div>
-
-          <FileSelector setOutput={setOutput} />
-
           <div className="right-panel">
             <FilterDisplay output={output} />
-            <ExcelFileHandler output={output} />
           </div>
         </div>
       </div>
