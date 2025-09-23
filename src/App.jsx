@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar.jsx";
 import FileSelector from "./components/FileSelector/FileSelector.jsx";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 import ExcelDownload from "../ExcelDownload/ExcelDownload.jsx";
