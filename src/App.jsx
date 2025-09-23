@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { startAnalyse } from "./utils.js";
 
 function App() {
   const [files1, setFiles1] = useState([]);
@@ -18,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <h1>Automatisation export des références</h1>
-      
+
       <div className="container">
         <div className="file-selector">
           <label htmlFor="files1">Sélecteur de fichiers </label>
@@ -62,9 +63,13 @@ function App() {
           )}
         </div>
 
-        <button className="button">Traiter les fichiers</button>
+        <button
+          className="button"
+          onClick={() => startAnalyse(files1[0], files1[1])}
+        >
+          Traiter les fichiers
+        </button>
       </div>
-
     </div>
   );
 }
