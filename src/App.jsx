@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./App.css";
 import { getFiltersFromDocument } from "./utils.js";
+import SPLoader from "./components/SpinnerLoader.jsx";
 
 function App() {
   const [files1, setFiles1] = useState([]);
   const [output, setOutput] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFiles1Change = (event) => {
     const selectedFiles = Array.from(event.target.files);
@@ -16,9 +18,9 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <h1>Automatisation export des références</h1>
 
+    <div className="App">
+      <div className="titre"><h1><div className="automatisation">Automatisation</div> export des références</h1></div>
       <div className="container">
         <div className="file-selector">
           <label htmlFor="files1">Sélecteur de fichiers </label>
@@ -45,6 +47,12 @@ function App() {
           Traiter les fichiers
         </button>
 
+        {loading && (
+          <div className="loader">
+            <SPLoader />
+          </div>
+        )}
+
         {output && output.filtres_excel && (
           <div className="output-list">
             <h2>Filtres détectés :</h2>
@@ -57,6 +65,7 @@ function App() {
         )}
       </div>
     </div>
+
   );
 }
 
