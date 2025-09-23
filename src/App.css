@@ -31,6 +31,9 @@ h1 {
 
 .file-selector {
   display: flex;
+  border: 2px dotted #1d937d;
+  border-radius: 10px;
+  padding: 20px;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
