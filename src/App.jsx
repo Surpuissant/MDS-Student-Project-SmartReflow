@@ -18,10 +18,7 @@ function App() {
       <Navbar />
       <div className="app-container">
         <div className="titrePrincipal">
-          <h1 className="titre">
-            <div className="automatisation">Automatisation</div> export des
-            références
-          </h1>
+          <h1 className="SmartReflow">SmartReflow</h1>
         </div>
         <div className="content">
           <div className="left-panel">
