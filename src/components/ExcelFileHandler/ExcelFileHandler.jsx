@@ -3,27 +3,31 @@ import { parseExcelToJSON } from "../../utils/excelUtils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
 import "./ExcelFileHandler.css";
 
-export default function ExcelFileHandler({ filters, sendDataToParent }) {
+export default function ExcelFileHandler({
+  filters,
+  SendFilteredData,
+  excelData,
+  SendExcelData,
+}) {
   const [excelFile, setExcelFile] = useState(null);
-  const [excelData, setExcelData] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [filteredExcelData, setFilteredExcelData] = useState(null);
 
   function handleClick() {
-    sendDataToParent(filteredExcelData);
+    SendFilteredData(filteredExcelData);
   }
   const COLUMN_TO_FILTER = "Specialisation__Name";
 
   const handleExcelFileChange = async (event) => {
     const selectedFile = event.target.files[0];
     setExcelFile(selectedFile);
-    setExcelData(null);
+    SendExcelData(null);
     setFilteredExcelData(null);
 
     if (selectedFile) {
       try {
         const jsonData = await parseExcelToJSON(selectedFile);
-        setExcelData(jsonData);
+        SendExcelData(jsonData);
       } catch (error) {
         console.error("Erreur parsing Excel:", error);
       }
@@ -33,7 +37,6 @@ export default function ExcelFileHandler({ filters, sendDataToParent }) {
 
   const applyAIFiltersToExcel = () => {
     if (!excelData || !filters) return;
-
     let filtersToApply = filters.filtres_excel;
 
     if (filtersToApply.length === 0) {
