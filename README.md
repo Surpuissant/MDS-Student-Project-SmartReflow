@@ -1,6 +1,6 @@
 # SmartReflow
 
-SmartReflow est une application frontend construite avec **React** et **Node.js**.  
+SmartReflow est une application frontend construite avec **Vite** et **Node.js**.  
 Elle permet de gérer et visualiser une interface moderne et performante, prête à être utilisée en développement comme en production.
 
 ---
@@ -8,7 +8,7 @@ Elle permet de gérer et visualiser une interface moderne et performante, prête
 ## 🚀 Technologies utilisées
 
 - [Node.js](https://nodejs.org/) – environnement JavaScript côté serveur
-- [React](https://fr.react.dev/) – outil de build rapide pour applications frontend
+- [Vite](https://vitejs.dev/) – outil de build rapide pour applications frontend
 - [NPM](https://www.npmjs.com/) – gestionnaire de dépendances
 - [Nginx](https://www.nginx.com/) – serveur HTTP pour le déploiement en production (via Docker)
 
