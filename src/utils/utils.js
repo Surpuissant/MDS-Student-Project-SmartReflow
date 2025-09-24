@@ -1,8 +1,4 @@
-import * as pdfjsLib from "pdfjs-dist";
-import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import { extractTextFromFile } from "./textExtraction";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
 
 const API_KEY = import.meta.env.VITE_OPENAI_API_KEY;
 const API_URL = "https://api.openai.com/v1/chat/completions";
