@@ -1,8 +1,3 @@
-import * as pdfjsLib from "pdfjs-dist";
-import workerSrc from "pdfjs-dist/build/pdf.worker.min.mjs?url";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = workerSrc;
-
 import { useState } from "react";
 import { getFiltersFromDocument } from "../../utils/utils.js";
 import SPLoader from "../SpinnerLoader/SpinnerLoader.jsx";
