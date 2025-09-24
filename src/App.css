@@ -27,13 +27,7 @@ body {
   justify-content: center;
 }
 
-.titre {
-  padding: 5%;
-  color: #333f50;
-  font-size: 22px;
-}
-
-.automatisation {
+.SmartReflow {
   display: flex;
   justify-content: center;
   font-weight: lighter;
@@ -42,7 +36,8 @@ body {
   font-style: italic;
   color: white;
   background-color: #1d937d;
-  padding: 5%;
+  padding: 1%;
+  margin-bottom: 20px;
 }
 
 .file-selector {

@@ -1,9 +1,6 @@
-# Workshopclient1
+# SmartReflow
 
-ProjectsLinker /
-L'application qui lie l'appel d'offre à vos projets.
-
-Workshopclient1 est une application frontend construite avec **Vite** et **Node.js**.  
+SmartReflow est une application frontend construite avec **React** et **Node.js**.  
 Elle permet de gérer et visualiser une interface moderne et performante, prête à être utilisée en développement comme en production.
 
 ---
@@ -11,7 +8,7 @@ Elle permet de gérer et visualiser une interface moderne et performante, prête
 ## 🚀 Technologies utilisées
 
 - [Node.js](https://nodejs.org/) – environnement JavaScript côté serveur
-- [Vite](https://vitejs.dev/) – outil de build rapide pour applications frontend
+- [React](https://fr.react.dev/) – outil de build rapide pour applications frontend
 - [NPM](https://www.npmjs.com/) – gestionnaire de dépendances
 - [Nginx](https://www.nginx.com/) – serveur HTTP pour le déploiement en production (via Docker)
 
@@ -33,7 +30,7 @@ Avant d’installer le projet, assurez-vous d’avoir :
 
    ```bash
    git clone <url-du-repo>
-   cd Workshopclient1
+   cd SmartReflow
    ```
 
 2. Installez les dépendances :
@@ -68,13 +65,13 @@ Vous pouvez ensuite les servir avec **Nginx**, **Apache** ou tout autre serveur 
 ### 1. Construire l’image
 
 ```bash
-docker build -t workshopclient1 .
+docker build -t SmartReflow .
 ```
 
 ### 2. Lancer le conteneur
 
 ```bash
-docker run -p 8080:80 workshopclient1
+docker run -p 8080:80 SmartReflow
 ```
 
 → L’application sera accessible sur : `http://localhost:8080`
@@ -84,7 +81,7 @@ docker run -p 8080:80 workshopclient1
 ## 📂 Structure du projet
 
 ```
-Workshopclient1/
+SmartReflow/
 ├── index.html              # Page principale
 ├── package.json            # Dépendances et scripts npm
 ├── vite.config.js          # Configuration Vite
