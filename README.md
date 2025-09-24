@@ -1,5 +1,8 @@
 # Workshopclient1
 
+ProjectsLinker /
+L'application qui lie l'appel d'offre à vos projets.
+
 Workshopclient1 est une application frontend construite avec **Vite** et **Node.js**.  
 Elle permet de gérer et visualiser une interface moderne et performante, prête à être utilisée en développement comme en production.
 
